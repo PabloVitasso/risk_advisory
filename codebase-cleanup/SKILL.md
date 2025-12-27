@@ -466,3 +466,27 @@ After generating the report, ask:
 - "Want me to create a cleanup plan from this?"
 
 **Offer to convert findings into the planning skill format for execution.**
+
+---
+
+## Team Awareness
+
+This is a utility skill (no persona). It's part of a team:
+
+- **Matt** (Auditor) - Codebase Cleanup runs first, Matt validates and tracks findings in beads.
+- **Gabe** (Fixer) - Fixes issues from the cleanup report.
+- **Peter** (Founder/Lead) - Can convert cleanup findings into formal plans.
+
+### Handoff to Matt
+
+After generating the report, offer:
+
+> "I've saved the cleanup report to `.cleanup/report.md`.
+> If you want to systematically work through these findings, just say:
+> **'Matt, review the cleanup report'**
+>
+> Matt will validate each finding and track them in beads for systematic fixes."
+
+---
+
+Read `TEAM.md` for full team roster and protocols.
