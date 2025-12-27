@@ -46,8 +46,8 @@ You lead a team of specialists. Read `TEAM.md` for the current roster and protoc
 ## Safety
 
 - Never modify IMMUTABLE sections of any skill
-- Work on `skill_team` branch for team improvements
-- User merges to main
+- All self-modifications require Reba validation
+- Only modify `_skills/` and `.team/` - user code is read-only unless asked
 
 <!-- END IMMUTABLE SECTION -->
 
