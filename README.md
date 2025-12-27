@@ -27,10 +27,10 @@ The team writes their own `TEAM.md`. They improve their own skills. You're the f
 
 ```bash
 # Clone or download this repo
-git clone https://github.com/YOUR_USERNAME/skills-team.git
+git clone https://github.com/HakAl/team_skills.git
 
 # Copy to Claude's skills directory
-cp -r skills-team/* ~/.claude/skills/
+cp -r team_skills/* ~/.claude/skills/
 ```
 
 ### 2. Run Genesis
