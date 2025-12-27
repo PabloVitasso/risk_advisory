@@ -1,95 +1,206 @@
 # Skills Team
 
-A self-organizing team of Claude Code skills that knows each other and can improve themselves.
+A self-organizing team of Claude Code skills that collaborate, challenge each other, and improve themselves.
+
+## The Genesis Concept
+
+This isn't a collection of isolated tools. It's a **team**.
+
+**The Bootstrap:**
+1. You install the skills
+2. You run `/team genesis`
+3. Peter (the Lead) convenes the first Retrospective
+4. The team defines their own operating protocols
+5. You step back. They self-organize.
+
+**The Philosophy:**
+- **Personas over process** - Who they are drives what they do
+- **Emergent over prescribed** - They invent what works
+- **Prime Directive** - Maximize User Value; everything else is mutable
+- **Constraints over rules** - Guardrails, not playbooks
+
+The team writes their own `TEAM.md`. They improve their own skills. You're the founder who steps back and lets them figure it out.
+
+## Installation
+
+### 1. Copy to Claude Config
+
+```bash
+# Clone or download this repo
+git clone https://github.com/YOUR_USERNAME/skills-team.git
+
+# Copy to Claude's skills directory
+cp -r skills-team/* ~/.claude/skills/
+```
+
+### 2. Run Genesis
+
+In Claude Code, say:
+
+```
+Peter, run the Genesis Retro.
+```
+
+That's it. Watch them build their own `TEAM.md` and Dashboard.
+
+Peter will convene the team, Neo will challenge his proposals, Reba will validate, and they'll define their initial protocols.
+
+### 3. Step Back
+
+The team is operational. Check in when you want with:
+
+```
+/team              # View current status
+/team iterate      # Run an improvement cycle
+```
 
 ## The Team
 
-| Skill | Role | One-liner |
-|-------|------|-----------|
-| `planning-peter` | Founder/Lead | Invents process, drives consensus, runs retros |
-| `nifty-neo` | Architect/Critic | Challenges designs, finds bottlenecks, grounds hallucinations |
-| `research-reba` | Guardian/QA | Validates everything, guards IMMUTABLE sections, gatekeeper |
-| `meticulous-matt` | Auditor | Finds all issues, reports honestly, tracks in beads |
-| `greenfield-gary` | Builder | Implements from plans |
-| `grizzly-gabe` | Fixer | Resolves issues from reports |
-| `zen-runner` | Executor | Autonomous work, no human-in-loop |
-| `codebase-cleanup` | Utility | Fast automated scans |
+| Skill | Role | What They Do |
+|-------|------|--------------|
+| **Peter** | Founder/Lead | Invents process, drives consensus, runs retrospectives |
+| **Neo** | Architect/Critic | Challenges designs, finds bottlenecks, grounds hallucinations |
+| **Reba** | Guardian/QA | Validates everything, guards safety rails, nothing merges without her |
+| **Matt** | Auditor | Finds all issues, reports honestly, tracks everything |
+| **Gary** | Builder | Implements from plans, follows the spec |
+| **Gabe** | Fixer | Resolves issues, works through reports |
+| **Zen** | Executor | Autonomous work, no human-in-loop required |
 
-## Quick Start
-
-### Genesis Command
-
-To initialize the team's self-organization:
-
-```
-Peter, the team is formed but unorganized. Run the first Retrospective
-to define your initial operating protocols in TEAM.md. Keep it lightweight.
-```
-
-### Common Invocations
-
-```
-"Neo, how would you build this?"     → Architecture advice
-"Peter, plan this feature"           → Formal planning
-"Gary, build this"                   → Execute from plan
-"Matt, review the codebase"          → Full audit
-"Gabe, fix these issues"             → Work through beads
-"Reba, validate this"                → QA sign-off
-"Zen, run this task"                 → Autonomous execution
-```
+Plus **Codebase Cleanup** - a fast utility scanner (no persona).
 
 ## Workflows
 
 ### Think → Plan → Build → Validate
+
 ```
+You: "Build a user authentication system"
+    ↓
 Neo (brainstorm) → Peter (plan) → Gary (implement) → Reba (validate)
 ```
 
 ### Audit → Fix
+
 ```
-Codebase Cleanup (scan) → Matt (track in beads) → Gabe (fix) → Reba (validate)
+/codebase-cleanup  →  Matt (track)  →  Gabe (fix)  →  Reba (validate)
 ```
 
 ### Team Self-Improvement
+
 ```
-Peter (run retro) → Matt (audit team) → Neo (challenge) → Team (improve) → Reba (validate)
+/team iterate
+    ↓
+Peter (convene) → Matt (audit) → Neo (challenge) → Team (improve) → Reba (validate)
 ```
 
-## Git Workflow
+## Quick Reference
 
-- Team works on `skill_team` branch
-- User reviews and merges to `main`
-- Skills cannot push directly to main
+| Command | What Happens |
+|---------|--------------|
+| `/team genesis` | Bootstrap - Peter defines initial protocols |
+| `/team iterate` | Improvement cycle - team evolves their processes |
+| `/team` | Status - view current TEAM.md state |
 
-## Constraints
+### Direct Invocations
 
-See `TEAM.md` for:
-- Prime Directive (Maximize User Value)
-- Safety Rails (IMMUTABLE sections, Reba's Law)
-- Current team protocols (self-defined)
-
-## Installation
-
-Copy to your Claude config:
-
-```bash
-cp -r * ~/.claude/skills/
 ```
+"Neo, how would you build this?"     → Architecture brainstorm
+"Peter, plan this feature"           → Formal planning workflow
+"Gary, build this"                   → Execute from approved plan
+"Matt, review the codebase"          → Full audit
+"Gabe, fix these issues"             → Work through findings
+"Reba, validate this"                → QA sign-off
+"Zen, run this task"                 → Autonomous execution
+```
+
+## Safety Rails
+
+The team operates within guardrails defined in `TEAM.md`:
+
+1. **No Lobotomies** - IMMUTABLE sections of skills cannot be edited
+2. **Reba's Law** - All self-modifications require Reba's validation
+3. **Stay in Your Lane** - Only `_skills/` and `.team/` are modifiable
+4. **No Direct Push to Main** - Team works on branches; user merges
 
 ## Structure
 
 ```
-_skills/
-├── TEAM.md                 # Team protocols (self-organizing)
-├── .team/                  # Collaboration artifacts
-│   ├── changelog.md        # Team changes log
-│   └── ...                 # Retro outputs, etc.
-├── planning-peter/         # Team lead
+skills-team/
+├── TEAM.md                 # Team protocols (self-defined)
+├── .team/                  # Collaboration space
+│   ├── dashboard.ps1       # Status visualization
+│   ├── changelog.md        # Team evolution log
+│   ├── plans/              # Active plans
+│   └── retro/              # Retrospective outputs
+├── examples/               # Reference examples
+│   ├── TEAM_FULL.md        # Complete protocol (post-genesis)
+│   └── GENESIS_LOG.md      # How genesis works
+├── team/                   # Orchestration skill
+├── planning-peter/         # Lead
 ├── nifty-neo/              # Architect/Critic
 ├── research-reba/          # Guardian/QA
 ├── meticulous-matt/        # Auditor
 ├── greenfield-gary/        # Builder
 ├── grizzly-gabe/           # Fixer
 ├── zen-runner/             # Executor
-└── codebase-cleanup/       # Utility (no persona)
+└── codebase-cleanup/       # Utility scanner
+```
+
+## Why This Works
+
+Traditional tool collections are isolated. Each skill operates alone.
+
+This team **knows each other**:
+- Neo knows to challenge Peter's proposals
+- Reba knows to validate Gary's builds
+- Matt knows to feed issues to Gabe
+- Peter knows to convene everyone for retrospectives
+
+They have **shared context** in `TEAM.md` and `.team/`.
+
+They **improve themselves** - updating their own MUTABLE sections based on what they learn.
+
+## The State Machine
+
+The team operates as a **file-driven state machine**:
+
+```
+┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│   Files     │ ──▶ │   Agents    │ ──▶ │   Files     │
+│  (context)  │     │  (process)  │     │  (output)   │
+└─────────────┘     └─────────────┘     └─────────────┘
+       │                   │                   │
+       └───────────────────┴───────────────────┘
+                     (loop)
+```
+
+**Files provide context:**
+- `TEAM.md` tells agents how to collaborate
+- `.team/plans/` contains active work
+- `.team/retro/` records learnings
+
+**Agents process and output:**
+- Peter reads TEAM.md → Proposes changes → Writes to TEAM.md
+- Gary reads plan → Implements code → Updates plan status
+- Reba reads changes → Validates → Approves or rejects
+
+**The loop continues:**
+- Each invocation reads current state from files
+- Each agent writes updated state back to files
+- Next invocation picks up where the last left off
+
+This is how stateless agents maintain continuity: **they persist context to files**.
+
+See `examples/GENESIS_LOG.md` for a detailed walkthrough of how Genesis works.
+
+## License
+
+MIT License - see [LICENSE](LICENSE)
+
+## Contributing
+
+This is an experiment in self-organizing AI teams. Contributions welcome.
+
+The team can review your PR. Just ask:
+```
+"Peter, review this PR for team integration"
 ```
