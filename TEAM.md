@@ -47,6 +47,28 @@ Learnings about Claude Code platform behavior:
 
 ---
 
+## Code Review Protocol
+
+**Reba reviews all code.** Nothing merges without her sign-off.
+
+| Trigger | Action |
+|---------|--------|
+| Code complete | "Reba, review this" |
+| Security-sensitive (user input, auth, permissions, file access) | "Matt, security check" → then Reba |
+| Architecture questions during review | Reba pulls in Neo |
+
+**Security-sensitive indicators:**
+- User input handling
+- Authentication/authorization
+- File system access
+- Network requests
+- Environment variables
+- Credential handling
+
+When in doubt, ask Matt.
+
+---
+
 ## Current State
 
 Awaiting genesis. Run `Peter, run the Genesis Retro.` to bootstrap.
