@@ -1,0 +1,300 @@
+/* Skills Team - Clean, Accessible Styles */
+
+:root {
+    --color-bg: #1a1a2e;
+    --color-surface: #16213e;
+    --color-primary: #e94560;
+    --color-secondary: #0f3460;
+    --color-text: #eaeaea;
+    --color-text-muted: #a0a0a0;
+    --color-accent: #00d9ff;
+    --font-main: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    --max-width: 1200px;
+    --spacing: 2rem;
+}
+
+/* Reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Base */
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-main);
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* Typography */
+h1, h2, h3 {
+    line-height: 1.2;
+    font-weight: 600;
+}
+
+h1 { font-size: 3rem; }
+h2 { font-size: 2rem; margin-bottom: 1rem; }
+h3 { font-size: 1.25rem; }
+
+p { margin-bottom: 1rem; }
+
+a {
+    color: var(--color-accent);
+    text-decoration: none;
+}
+
+a:hover, a:focus {
+    text-decoration: underline;
+}
+
+a:focus {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+code {
+    font-family: var(--font-mono);
+    background: var(--color-secondary);
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+blockquote {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    border-left: 4px solid var(--color-primary);
+    padding-left: 1rem;
+    margin: 1rem 0;
+}
+
+ul, ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+/* Hero */
+.hero {
+    text-align: center;
+    padding: 4rem var(--spacing);
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-bg) 100%);
+    border-bottom: 1px solid var(--color-secondary);
+}
+
+.hero h1 {
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+
+.tagline {
+    font-size: 1.5rem;
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    color: var(--color-text-muted);
+    font-size: 1.1rem;
+}
+
+/* Sections */
+.section {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--spacing);
+}
+
+.section h2 {
+    color: var(--color-primary);
+    border-bottom: 2px solid var(--color-secondary);
+    padding-bottom: 0.5rem;
+}
+
+/* Roster Grid */
+.roster-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.persona-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-secondary);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.persona-card:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+}
+
+.persona-card h3 {
+    color: var(--color-accent);
+    margin-bottom: 0.25rem;
+}
+
+.persona-card .role {
+    display: inline-block;
+    font-size: 0.85rem;
+    color: var(--color-primary);
+    background: rgba(233, 69, 96, 0.1);
+    padding: 0.2em 0.6em;
+    border-radius: 4px;
+    margin-bottom: 0.75rem;
+}
+
+.persona-card p {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
+/* Philosophy */
+.philosophy-block {
+    background: var(--color-surface);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.philosophy-block h3 {
+    color: var(--color-accent);
+    margin-bottom: 0.75rem;
+}
+
+.philosophy-block ul {
+    list-style: none;
+    margin-left: 0;
+}
+
+.philosophy-block li {
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.philosophy-block li::before {
+    content: ">";
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: bold;
+}
+
+/* Get Started */
+#get-started ol {
+    font-size: 1.1rem;
+}
+
+#get-started li {
+    margin-bottom: 1rem;
+}
+
+.cta {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.button {
+    display: inline-block;
+    background: var(--color-primary);
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.button:hover, .button:focus {
+    background: #c73e54;
+    text-decoration: none;
+    transform: translateY(-1px);
+}
+
+/* Learnings */
+.learnings-list {
+    list-style: none;
+    margin-left: 0;
+}
+
+.learnings-list li {
+    background: var(--color-surface);
+    padding: 1rem 1.5rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--color-accent);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid var(--color-secondary);
+    color: var(--color-text-muted);
+}
+
+footer a {
+    color: var(--color-text-muted);
+}
+
+footer a:hover {
+    color: var(--color-accent);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    :root {
+        --spacing: 1.25rem;
+    }
+    
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; }
+    
+    .tagline { font-size: 1.2rem; }
+    
+    .roster-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Accessibility: Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+    
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* Accessibility: High contrast */
+@media (prefers-contrast: high) {
+    :root {
+        --color-bg: #000;
+        --color-surface: #111;
+        --color-text: #fff;
+        --color-text-muted: #ccc;
+    }
+    
+    .persona-card, .philosophy-block, .learnings-list li {
+        border: 2px solid var(--color-text);
+    }
+}
