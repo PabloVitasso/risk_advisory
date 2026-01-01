@@ -39,8 +39,16 @@ All notable changes to team structure, processes, and skills.
 
 ### Process
 - Evaluated mcp_agent_mail, decided against (overkill for our coordination model)
+- Evaluated AutoGen, decided against (distributed agents, not our model)
+- Added Invocation Protocol - team = personas, not subagents
+- Added Handoff Protocol for cross-session context persistence
 - Team discussion drove all major decisions
 - Peter proposed -> Neo challenged -> Reba validated (pattern holding)
+
+### Community
+- **First GitHub issue response** - QuantumNiyam asked about self-organization without persistent memory
+- Team drafted collaborative response about handoff system, GWT, and honest limitations
+- Engaged openly about being a v0 experiment
 
 ---
 
