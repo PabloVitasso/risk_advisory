@@ -34,6 +34,20 @@ All notable changes to team structure, processes, and skills.
 - Decided: interesting ideas, different problem space than ours
 - Extracted principles without adopting tooling
 
+### Accomplishments (scrappy project)
+- **Drafted GitHub issue response** - Nomic embedding feature request, recommended evidence-based approach
+- **Revised README** - Led with killer stat (23K requests), added comparison table, fixed inaccuracies
+- **Reviewed LangGraph migration** - User followed team's plan, exceeded targets:
+  - 55,118 lines deleted (target: 17,671)
+  - 7,168 lines added (robust implementation)
+  - Net reduction: 47,950 lines
+  - User correctly deviated from plan to keep orchestrator/ and context/ (features, not scaffolding)
+
+### Learned (from migration review)
+- **Plans overestimate deletion, underestimate addition** - Real implementations need more code
+- **LangGraph replaces control flow, not infrastructure** - State machine replaced, features kept
+- **User judgment > rigid plan adherence** - Good plans allow deviation
+
 ---
 
 ## 2025-12-28 - Team Goes Public

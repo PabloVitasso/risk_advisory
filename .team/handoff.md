@@ -15,12 +15,22 @@ status: active
 - Full team discussion: Peter (excited), Neo (skeptical), Reba (cautious)
 - **Voted unanimously** for Autonomous Team Workflow (`/team <task>`)
 - Split on Learnings Protocol - tabled for informal experimentation
+- Tested autonomous workflow on two tasks (Playwright navigation, changelog+docs update)
+- Helped user respond to GitHub issue on scrappy (Nomic embedding request)
+- Drafted revised README for scrappy
+- **Reviewed LangGraph migration progress** - user followed our plan, exceeded targets
 
 ## Learnings (cm-inspired)
 - **Memory should decay without validation** - knowledge needs re-confirmation
 - **Inflection points > every run** - log what matters, not everything
 - **Discipline before tooling** - try manually before automating
 - **Counterfactual value is invisible** - mistakes not made can't be measured
+
+## Learnings (LangGraph migration review)
+- **Plans overestimate deletion, underestimate addition** - predicted 1.4K lines added, actual 7.2K
+- **LangGraph replaces control flow, not infrastructure** - task_router/agent deleted, orchestrator/context kept
+- **"Simplify" doesn't mean "delete features"** - original plan was too aggressive
+- **User judgment > rigid plan adherence** - user correctly kept modules the plan said to delete
 
 ## Decisions Made
 - Team members are personas in same context, NOT Task subagents
