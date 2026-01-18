@@ -107,17 +107,36 @@ Researched and documented recommended MCP servers for optimal team performance.
 **Created:** `ENVIRONMENT.md` - tiered recommendations, install commands, graceful degradation
 **Updated:** `install.sh` - now installs ENVIRONMENT.md
 **Updated:** `README.md` - added environment setup step
+**Updated:** `team/SKILL.md` - added `/team setup` command documentation
 
-**Key findings:**
-- GitHub MCP is the biggest gap (official server exists)
-- compound-engineering provides Context7 + Playwright (60% coverage)
-- Sequential Thinking reinforces Plan→Build pattern
-- Memory could help with cross-session context
+**User installed all servers:**
+| Server | Status |
+|--------|--------|
+| Context7 | ✓ Connected |
+| Playwright | ✓ Connected |
+| Sequential Thinking | ✓ Connected |
+| Memory | ✓ Connected |
+| GitHub | ✓ Connected |
+| PostgreSQL | Standby (no DB running) |
 
-**Tiered priorities:**
-| Must Have | Should Have | Nice to Have |
-|-----------|-------------|--------------|
-| Context7, GitHub | Playwright, Sequential Thinking | Memory, PostgreSQL |
+**Added to TEAM.md:** MCP Tool Protocols
+- When to use Sequential Thinking (architecture, planning, debugging, trade-offs)
+- When to use Memory vs handoff.md (durable knowledge vs session state)
+- When to use GitHub MCP vs `gh` CLI
+
+## @peacebinflow Research
+Reviewed their repos after Dev.to conversation:
+- **MindsEye Core** - Reasoning as event stream, LAW-T temporal labeling
+- **MindScript Core** - Deterministic prompting language with 8 Laws
+
+Complementary approaches:
+- team_skills: Structure at generation time
+- SAGEWORKS: Traceability after generation
+
+Potential future collaboration on the handoff between "visible assumptions" → "durable assumptions".
 
 ## Next Session
-Community engagement is active. Monitor Dev.to thread. Consider implementing `/team setup` command for guided MCP configuration.
+- Team at full MCP capability
+- Community engagement active
+- Monitor Dev.to for @peacebinflow follow-up
+- Consider Memory MCP for storing cross-session learnings
