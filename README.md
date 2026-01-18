@@ -1,6 +1,23 @@
 # Skills Team
 
-A self-organizing team of Claude Code skills that collaborate, challenge each other, and improve themselves.
+**The Plan → Build Workflow for Claude Code**
+
+AI teammates that argue with each other so your code ships better.
+
+![Demo](docs/demo.gif)
+
+## The Pattern
+
+**Plan → Critique → Build → Validate**
+
+Instead of "just code it," force a structured conversation:
+
+1. **Peter** plans the approach
+2. **Neo** challenges and critiques
+3. **Gary** builds from the approved plan
+4. **Reba** validates before it ships
+
+Give them a task, watch them argue, ship better code.
 
 ## The Genesis Concept
 
