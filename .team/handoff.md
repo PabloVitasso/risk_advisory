@@ -49,8 +49,12 @@ status: active
 
 ## Open Threads
 - [ ] Monitor Dev.to engagement
+- [ ] Monitor Discord post engagement
 - [ ] Consider second blog post topic
-- [ ] Share in Claude Code community spaces
+
+## Distribution
+- **Dev.to**: https://dev.to/theskillsteam/why-i-make-claude-argue-with-itself-before-writing-code-4m5g
+- **Discord**: https://discord.com/channels/1072196207201501266/1462244494643695657 (Claude Developers #share-your-project)
 
 ## Next Session
 Growth is seeded. Watch for engagement, iterate based on feedback.
