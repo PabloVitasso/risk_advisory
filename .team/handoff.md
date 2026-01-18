@@ -135,8 +135,21 @@ Complementary approaches:
 
 Potential future collaboration on the handoff between "visible assumptions" → "durable assumptions".
 
+## MCP Testing (2026-01-18)
+All servers verified working:
+
+| Server | Test | Result |
+|--------|------|--------|
+| Memory | Create entities, relations, search | ✓ Stored team_skills, user, peacebinflow |
+| Sequential Thinking | 4-step analysis | ✓ Step-by-step reasoning works |
+| GitHub | Auth, list issues, list commits | ✓ Full access as HakAl |
+
+Memory now contains initial knowledge graph:
+- `team_skills` (project) → founded by → `user`
+- `peacebinflow` (person) → engaged_with → team_skills
+
 ## Next Session
-- Team at full MCP capability
+- Team at full MCP capability (all tested)
 - Community engagement active
 - Monitor Dev.to for @peacebinflow follow-up
-- Consider Memory MCP for storing cross-session learnings
+- Use Memory for durable cross-session knowledge
