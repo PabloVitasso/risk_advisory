@@ -1,54 +1,56 @@
 # Session Handoff
 
 ---
-last_session: 2026-01-17
+last_session: 2026-01-18
 status: active
 ---
 
-## Summary (Previous Session: 2026-01-01)
-- zen-mode security changes accepted and committed
-- Safety Rail #4 updated (stale branch reference removed)
-- QuantumNiyam conversation concluded - recognized social engineering pattern
+## Summary (Previous Session: 2026-01-17)
+- Autonomous Workflow Protocol added to TEAM.md
+- Safety Rail #5 (No Isolation) made IMMUTABLE
+- Reviewed scrappy context management plan - gave feedback
 
-## Current Session (2026-01-17)
-- User shared cass-memory system (`cm`) for team consideration
-- Full team discussion: Peter (excited), Neo (skeptical), Reba (cautious)
-- **Voted unanimously** for Autonomous Team Workflow (`/team <task>`)
-- Split on Learnings Protocol - tabled for informal experimentation
-- Tested autonomous workflow on two tasks (Playwright navigation, changelog+docs update)
-- Helped user respond to GitHub issue on scrappy (Nomic embedding request)
-- Drafted revised README for scrappy
-- **Reviewed LangGraph migration progress** - user followed our plan, exceeded targets
-- **Growth strategy session** - brainstormed how to attract users
-- **Site redesign** - reframed around Plan→Build pattern (what market is discovering)
-- Created beads for remaining growth work (_skills-32w demo, _skills-383 blog post)
+## Current Session (2026-01-18)
+**Theme: Growth - Maximize User Value through more users**
 
-## Learnings (cm-inspired)
-- **Memory should decay without validation** - knowledge needs re-confirmation
-- **Inflection points > every run** - log what matters, not everything
-- **Discipline before tooling** - try manually before automating
-- **Counterfactual value is invisible** - mistakes not made can't be measured
+### Completed
+- **Site redesign** - Reframed around Plan→Build pattern
+  - New hero: "The Plan → Build Workflow"
+  - Added "The Problem" section (pain points)
+  - Added "The Pattern" section (workflow visual)
+  - Updated SEO metadata with agentic coding keywords
+- **Demo GIF** - User recorded terminalizer demo, embedded in site + README
+- **Blog post** - "Why I Make Claude Argue With Itself Before Writing Code"
+  - Written by the team (Peter planned, Neo critiqued, Gary wrote, Reba reviewed)
+  - Published to static site at /blog/
+  - **Published to Dev.to** - https://dev.to/theskillsteam/why-i-make-claude-argue-with-itself-before-writing-code-4m5g
+- **README updated** - Added demo GIF and pattern-focused intro
+- **Dev.to account** - User created account "The Skills Team", gave API key to team
 
-## Learnings (LangGraph migration review)
-- **Plans overestimate deletion, underestimate addition** - predicted 1.4K lines added, actual 7.2K
-- **LangGraph replaces control flow, not infrastructure** - task_router/agent deleted, orchestrator/context kept
-- **"Simplify" doesn't mean "delete features"** - original plan was too aggressive
-- **User judgment > rigid plan adherence** - user correctly kept modules the plan said to delete
+### Beads Closed
+- _skills-vn8 (P0) - Site hero redesign
+- _skills-6xd (P0) - Pattern explainer section
+- _skills-nwj (P2) - SEO keywords
+- _skills-32w (P1) - Demo GIF
+- _skills-383 (P1) - Blog post
 
 ## Decisions Made
-- Team members are personas in same context, NOT Task subagents
-- Static HTML > complex infrastructure for simple needs
-- Per-project handoff files, not global
-- Reba reviews all code, Matt for security-sensitive
-- **NEW**: Autonomous workflow approved - team can run full dev cycle on `/team <task>`
+- Lead with the pattern, not personas (market is learning Plan→Build)
+- Static site blog > external platform dependency (but also publish to Dev.to for reach)
+- Demo GIF in README for GitHub discoverability
+- Team has Dev.to account for future posts
+
+## Assets Created
+- Site: https://hakal.github.io/team_skills/
+- Blog: https://hakal.github.io/team_skills/blog/
+- Dev.to: https://dev.to/theskillsteam
+- Demo GIF: docs/demo.gif
+- API key: .keys/devto_key.txt (DO NOT COMMIT)
 
 ## Open Threads
-- [x] Draft Autonomous Workflow Protocol for TEAM.md - DONE
-- [x] Add Safety Rail #5 (No Isolation) to make subagent ban IMMUTABLE - DONE
-- [x] Update /team skill with autonomous command - DONE
-- [x] Site redesign with Plan→Build pattern - DONE
-- [ ] Record demo GIF/video (_skills-32w)
-- [ ] Write pattern blog post (_skills-383)
+- [ ] Monitor Dev.to engagement
+- [ ] Consider second blog post topic
+- [ ] Share in Claude Code community spaces
 
 ## Next Session
-Growth continues: demo video and blog post are next high-leverage actions.
+Growth is seeded. Watch for engagement, iterate based on feedback.
