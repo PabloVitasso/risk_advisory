@@ -71,10 +71,53 @@ None
 - Documentation complete (README, all SKILL.md files, TEAM.md, LICENSE)
 - File structure clean
 
+## Community Engagement
+| Platform | Metric | Status |
+|----------|--------|--------|
+| Dev.to | 3 reactions, 2-comment thread | Active conversation |
+| Discord | Posted in #share-your-project | Monitoring |
+| team_skills clones | 42 yesterday | Day 1 of outreach |
+
+### Dev.to Thread with @peacebinflow
+Real technical engagement, not drive-by likes:
+1. **Their opening**: "The personas aren't the point — the structure is." Nailed the thesis.
+2. **Our reply**: Acknowledged the insight, asked about their project.
+3. **Their follow-up**: Described SAGEWORKS AI - "ledger-first AI workflows", "auditable cognition", "assumptions are traceable". Complementary approach.
+4. **Our reply** (pending post): Drew the connection - we enforce structure at generation, they make reasoning auditable after. Same root problem.
+
+This is community forming around shared ideas.
+
+## Scrappy Traffic Spike
+**284 clones yesterday** (vs 42 for team_skills). No promotion - just shipped langgraph update. Someone with reach shared it organically. Proof that good work finds its audience.
+
+## Reflection
+User insight: "I added constraints, YOU developed the process."
+
+True. The Handoff Protocol, Code Review flow, Invocation Protocol - the team wrote those. Genesis concept working as designed: constraints + trust = self-organization.
+
 ## Open Threads
-- [ ] Monitor Dev.to engagement
-- [ ] Monitor Discord engagement
+- [x] Reply to Dev.to comment #1 - Done, liked
+- [x] Reply to Dev.to comment #2 - User posting
+- [ ] Monitor for @peacebinflow follow-up (potential collaboration?)
 - [ ] Reply to Discord with install one-liner
 
+## MCP Environment Spec (2026-01-18)
+Researched and documented recommended MCP servers for optimal team performance.
+
+**Created:** `ENVIRONMENT.md` - tiered recommendations, install commands, graceful degradation
+**Updated:** `install.sh` - now installs ENVIRONMENT.md
+**Updated:** `README.md` - added environment setup step
+
+**Key findings:**
+- GitHub MCP is the biggest gap (official server exists)
+- compound-engineering provides Context7 + Playwright (60% coverage)
+- Sequential Thinking reinforces Plan→Build pattern
+- Memory could help with cross-session context
+
+**Tiered priorities:**
+| Must Have | Should Have | Nice to Have |
+|-----------|-------------|--------------|
+| Context7, GitHub | Playwright, Sequential Thinking | Memory, PostgreSQL |
+
 ## Next Session
-All beads closed. Ready for organic growth monitoring.
+Community engagement is active. Monitor Dev.to thread. Consider implementing `/team setup` command for guided MCP configuration.

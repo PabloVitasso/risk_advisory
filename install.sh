@@ -89,6 +89,10 @@ else
   echo -e "  ${YELLOW}·${NC} TEAM.md (kept existing)"
 fi
 
+# Always update ENVIRONMENT.md (reference doc, no user state)
+cp "$TEMP_DIR/team_skills/ENVIRONMENT.md" "$SKILLS_DIR/"
+echo -e "  ${GREEN}✓${NC} ENVIRONMENT.md"
+
 # Copy .team directory only if it doesn't exist (preserve user's handoff)
 if [ ! -d "$SKILLS_DIR/.team" ]; then
   mkdir -p "$SKILLS_DIR/.team"
@@ -123,5 +127,6 @@ fi
 
 echo ""
 echo "Documentation: https://hakal.github.io/team_skills/"
+echo "Environment:   See ENVIRONMENT.md for recommended MCP servers"
 echo "Issues: https://github.com/HakAl/team_skills/issues"
 echo ""

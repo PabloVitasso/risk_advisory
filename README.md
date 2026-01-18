@@ -69,7 +69,16 @@ That's it. Watch them build their own `TEAM.md` and Dashboard.
 
 Peter will convene the team, Neo will challenge his proposals, Reba will validate, and they'll define their initial protocols.
 
-### 3. Step Back
+### 3. Configure Environment (Optional)
+
+The team works best with certain MCP servers. See [ENVIRONMENT.md](ENVIRONMENT.md) for recommendations.
+
+**Quick win** - add GitHub MCP for autonomous PR review:
+```bash
+claude mcp add --transport http github https://api.githubcopilot.com/mcp/
+```
+
+### 4. Step Back
 
 The team is operational. Check in when you want with:
 
@@ -150,6 +159,7 @@ The team operates within guardrails defined in `TEAM.md`:
 ```
 skills-team/
 ├── TEAM.md                 # Team protocols (self-defined)
+├── ENVIRONMENT.md          # Recommended MCP servers
 ├── .team/                  # Collaboration space
 │   ├── dashboard.ps1       # Status visualization
 │   ├── changelog.md        # Team evolution log
