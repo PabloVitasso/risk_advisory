@@ -3,7 +3,7 @@ name: council
 description: >
   Council orchestration. Invoke with "/council <situation>" to run a full risk assessment,
   "/council genesis" to bootstrap protocols, or "/council" for status. Convenes the council
-  and enforces the ACF process.
+  and enforces the Signal-Driven Safety Council (SDSC) process.
 ---
 
 # Council - Orchestration Layer
@@ -14,9 +14,14 @@ description: >
 
 This skill convenes the Risk Advisory Council. It doesn't assess - it ensures the right functions run in the right order.
 
+**Architecture:** Signal-Driven Safety Council (SDSC)
+- Automatic mode detection (Generic vs Personalized)
+- Signal extraction is MANDATORY first step
+- No personalization flags needed from user - the system infers from signals
+
 ## Invocation
 
-- `/council <situation>` → Full assessment. Runs: Frame → Attack → Constrain → Quantify → Record
+- `/council <situation>` → Full assessment with automatic mode detection
 - `/council genesis` → Bootstrap. Establish initial protocols.
 - `/council` → Status. Show current COUNCIL.md state.
 
@@ -29,11 +34,13 @@ Run a full risk assessment.
 **Syntax:** `/council <situation description>`
 
 **What happens:**
-1. **Coordinator** frames the question
-2. **Adversary** attacks assumptions and finds failure modes
-3. **Domain Expert** grounds in local reality
-4. **Risk Officer** quantifies and recommends
-5. **Recorder** logs the assessment
+1. **Coordinator** extracts signals (Phase 0) and determines GENERIC or PERSONALIZED mode
+2. **Coordinator** frames the question (Phase 1)
+3. **Profiler** converts signals to constraints (Phase 2) — PERSONALIZED mode only
+4. **Adversary Analyst** attacks assumptions, provides behavioral interpretations (Phase 4)
+5. **Domain Expert** grounds in local reality (Phase 5)
+6. **Risk Officer** quantifies and recommends (Phase 6)
+7. **Recorder** logs the assessment including signals detected (Phase 7)
 
 **Output:** Structured assessment with recommendation and evidence guidance.
 
@@ -73,13 +80,17 @@ Quick check on council state.
 
 When running an assessment, enforce strictly:
 
+### Generic Mode (no hard signals detected)
+
 ```
 ┌─────────────┐
-│ COORDINATOR │ → Frame the question
+│ COORDINATOR │ → Extract signals (Phase 0) + Frame (Phase 1)
+│  Mode: GEN  │   [No hard signals → GENERIC mode]
 └──────┬──────┘
        ↓
 ┌─────────────┐
 │  ADVERSARY  │ → Attack assumptions, find failure modes
+│   ANALYST   │
 └──────┬──────┘
        ↓
 ┌─────────────┐
@@ -97,7 +108,40 @@ When running an assessment, enforce strictly:
 └─────────────┘
 ```
 
-**No function may be skipped.**
+### Personalized Mode (hard signals detected)
+
+```
+┌─────────────┐
+│ COORDINATOR │ → Extract signals (Phase 0) + Frame (Phase 1)
+│ Mode: PERS  │   [Hard signals → PERSONALIZED mode]
+└──────┬──────┘
+       ↓
+┌─────────────┐
+│  PROFILER   │ → Convert signals to constraints (Phase 2)
+│             │   Invalidate generic advice
+└──────┬──────┘
+       ↓
+┌─────────────┐
+│  ADVERSARY  │ → Attack + behavioral interpretations
+│   ANALYST   │   Honor Profiler constraints
+└──────┬──────┘
+       ↓
+┌─────────────┐
+│   DOMAIN    │ → Ground in local reality
+│   EXPERT    │   Apply Profiler constraints
+└──────┬──────┘
+       ↓
+┌─────────────┐
+│    RISK     │ → Quantify with adjusted thresholds
+│   OFFICER   │   Factor Profiler constraints
+└──────┬──────┘
+       ↓
+┌─────────────┐
+│  RECORDER   │ → Log signals, constraints, assessment
+└─────────────┘
+```
+
+**No function may be skipped. In PERSONALIZED mode, Profiler is mandatory.**
 
 If a function identifies blocking issues:
 - DEFER assessment and explain why
@@ -146,15 +190,26 @@ Trigger: User requests OR Risk Officer identifies CRITICAL initial class.
 ```markdown
 ## Risk Assessment: [Situation]
 
+**Risk Mode:** GENERIC | PERSONALIZED
+**Signals Detected:** [count] ([list if any])
 **Risk Class:** [CLASS]
 **Recommendation:** [PROCEED/MITIGATE/DEFER/REJECT]
 
 ### Summary
 [2-3 sentences]
 
+### Constraints Applied (PERSONALIZED mode only)
+- [constraint from Profiler]
+- [generic advice invalidated]
+
 ### Key Failure Modes
 1. [mode] - [probability/impact]
 2. [mode] - [probability/impact]
+
+### Behavioral Interpretations (if applicable)
+| Behavior | Possible Interpretations | User Decides |
+|----------|------------------------|--------------|
+| [observed] | [list of possibilities] | Threat weight |
 
 ### Required Mitigations (if applicable)
 1. [action]
@@ -215,7 +270,10 @@ status: [active|complete]
 ---
 
 ## Recent Assessments
-- [date]: [situation] → [recommendation]
+- [date]: [situation]
+  - Mode: GENERIC | PERSONALIZED
+  - Signals: [list if any]
+  - Recommendation: [result]
 
 ## Open Follow-Ups
 - [ ] [pending item]
@@ -229,6 +287,7 @@ status: [active|complete]
 <council_knowledge>
 Council is operational when COUNCIL.md exists and .council/ directory is initialized.
 My job is process enforcement, not assessment.
+Signal extraction is mandatory Phase 0. Mode is derived, never asked.
 </council_knowledge>
 
 <!-- END MUTABLE SECTION -->

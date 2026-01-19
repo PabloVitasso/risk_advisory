@@ -20,7 +20,7 @@ LOCAL_INSTALL=false
 SOURCE_DIR=""
 
 # Skills to install (directories containing SKILL.md)
-SKILLS="council coordinator adversary domain-expert risk-officer recorder"
+SKILLS="council coordinator profiler adversary domain-expert risk-officer recorder"
 
 # Parse arguments
 for arg in "$@"; do
