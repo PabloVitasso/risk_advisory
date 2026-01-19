@@ -5,18 +5,32 @@
 # Usage:
 #   curl -sL https://raw.githubusercontent.com/HakAl/risk_advisory/master/install.sh | bash
 #
-# Or download and run:
-#   chmod +x install.sh && ./install.sh
+# Or from local clone:
+#   ./install.sh --local
+#
+# Options:
+#   --local    Install from current directory instead of cloning from GitHub
 
 set -e
 
 REPO="https://github.com/HakAl/risk_advisory.git"
 SKILLS_DIR="${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}"
-TEMP_DIR=$(mktemp -d)
-SCRIPT_VERSION="1.0.0"
+SCRIPT_VERSION="1.0.1"
+LOCAL_INSTALL=false
+SOURCE_DIR=""
 
 # Skills to install (directories containing SKILL.md)
 SKILLS="council coordinator adversary domain-expert risk-officer recorder"
+
+# Parse arguments
+for arg in "$@"; do
+  case $arg in
+    --local)
+      LOCAL_INSTALL=true
+      shift
+      ;;
+  esac
+done
 
 # Colors (if terminal supports them)
 if [ -t 1 ]; then
@@ -38,10 +52,13 @@ echo -e "${BLUE}Risk Advisory Council Installer v${SCRIPT_VERSION}${NC}"
 echo "============================================="
 echo ""
 
-# Check for git
-if ! command -v git &> /dev/null; then
-  echo -e "${RED}Error: git is required but not installed.${NC}"
-  exit 1
+# Determine source directory
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Auto-detect local install if running from repo directory
+if [ -f "$SCRIPT_DIR/COUNCIL.md" ] && [ -d "$SCRIPT_DIR/council" ]; then
+  LOCAL_INSTALL=true
+  echo -e "Detected local repository at ${YELLOW}$SCRIPT_DIR${NC}"
 fi
 
 # Create skills directory if needed
@@ -50,12 +67,28 @@ if [ ! -d "$SKILLS_DIR" ]; then
   mkdir -p "$SKILLS_DIR"
 fi
 
-# Clone repo to temp directory
-echo "Fetching latest from GitHub..."
-if ! git clone --depth 1 --quiet "$REPO" "$TEMP_DIR/risk_advisory" 2>/dev/null; then
-  echo -e "${RED}Error: Failed to clone repository.${NC}"
-  rm -rf "$TEMP_DIR"
-  exit 1
+if [ "$LOCAL_INSTALL" = true ]; then
+  # Use local directory
+  SOURCE_DIR="$SCRIPT_DIR"
+  echo -e "Installing from local directory..."
+else
+  # Clone repo to temp directory
+  TEMP_DIR=$(mktemp -d)
+  SOURCE_DIR="$TEMP_DIR/risk_advisory"
+
+  # Check for git
+  if ! command -v git &> /dev/null; then
+    echo -e "${RED}Error: git is required but not installed.${NC}"
+    exit 1
+  fi
+
+  echo "Fetching latest from GitHub..."
+  if ! git clone --depth 1 --quiet "$REPO" "$SOURCE_DIR" 2>/dev/null; then
+    echo -e "${RED}Error: Failed to clone repository.${NC}"
+    echo -e "${YELLOW}Tip: Use --local flag to install from a local clone.${NC}"
+    rm -rf "$TEMP_DIR"
+    exit 1
+  fi
 fi
 
 echo ""
@@ -65,25 +98,27 @@ echo "Installing council skills:"
 installed=0
 updated=0
 for skill in $SKILLS; do
-  if [ -d "$TEMP_DIR/risk_advisory/$skill" ]; then
+  if [ -d "$SOURCE_DIR/$skill" ]; then
     if [ -d "$SKILLS_DIR/$skill" ]; then
       # Update existing
       rm -rf "$SKILLS_DIR/$skill"
-      cp -r "$TEMP_DIR/risk_advisory/$skill" "$SKILLS_DIR/"
+      cp -r "$SOURCE_DIR/$skill" "$SKILLS_DIR/"
       echo -e "  ${GREEN}↻${NC} $skill (updated)"
       updated=$((updated + 1))
     else
       # Fresh install
-      cp -r "$TEMP_DIR/risk_advisory/$skill" "$SKILLS_DIR/"
+      cp -r "$SOURCE_DIR/$skill" "$SKILLS_DIR/"
       echo -e "  ${GREEN}✓${NC} $skill"
       installed=$((installed + 1))
     fi
+  else
+    echo -e "  ${RED}✗${NC} $skill (not found in source)"
   fi
 done
 
 # Copy COUNCIL.md only if it doesn't exist (preserve user's protocols)
 if [ ! -f "$SKILLS_DIR/COUNCIL.md" ]; then
-  cp "$TEMP_DIR/risk_advisory/COUNCIL.md" "$SKILLS_DIR/"
+  cp "$SOURCE_DIR/COUNCIL.md" "$SKILLS_DIR/"
   echo -e "  ${GREEN}✓${NC} COUNCIL.md"
 else
   echo -e "  ${YELLOW}·${NC} COUNCIL.md (kept existing)"
@@ -98,8 +133,10 @@ else
   echo -e "  ${YELLOW}·${NC} .council/ (kept existing)"
 fi
 
-# Cleanup
-rm -rf "$TEMP_DIR"
+# Cleanup temp directory (only if we cloned from remote)
+if [ "$LOCAL_INSTALL" = false ] && [ -n "$TEMP_DIR" ]; then
+  rm -rf "$TEMP_DIR"
+fi
 
 echo ""
 echo -e "${GREEN}Done!${NC} Council installed to $SKILLS_DIR"
