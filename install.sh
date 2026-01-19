@@ -1,9 +1,9 @@
 #!/bin/bash
 # Risk Advisory Council Installer for Claude Code
-# https://github.com/HakAl/risk_advisory
+# https://github.com/PabloVitasso/risk_advisory
 #
 # Usage:
-#   curl -sL https://raw.githubusercontent.com/HakAl/risk_advisory/master/install.sh | bash
+#   curl -sL https://raw.githubusercontent.com/PabloVitasso/risk_advisory/master/install.sh | bash
 #
 # Or from local clone:
 #   ./install.sh --local
@@ -13,7 +13,7 @@
 
 set -e
 
-REPO="https://github.com/HakAl/risk_advisory.git"
+REPO="https://github.com/PabloVitasso/risk_advisory.git"
 SKILLS_DIR="${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}"
 SCRIPT_VERSION="1.0.1"
 LOCAL_INSTALL=false
@@ -158,11 +158,11 @@ elif [ $updated -gt 0 ]; then
   echo "Council updated. Your COUNCIL.md and .council/ were preserved."
   echo ""
   echo "To see what's new, check:"
-  echo "  https://github.com/HakAl/risk_advisory/releases"
+  echo "  https://github.com/PabloVitasso/risk_advisory/releases"
 fi
 
 echo ""
-echo "Documentation: https://github.com/HakAl/risk_advisory"
+echo "Documentation: https://github.com/PabloVitasso/risk_advisory"
 echo "Original framework: https://github.com/HakAl/team_skills"
-echo "Issues: https://github.com/HakAl/risk_advisory/issues"
+echo "Issues: https://github.com/PabloVitasso/risk_advisory/issues"
 echo ""

@@ -90,13 +90,13 @@ When behavioral cues are detected, the Adversary Analyst provides **evidence-bas
 ### Quick Install
 
 ```bash
-curl -sL https://raw.githubusercontent.com/HakAl/risk_advisory/master/install.sh | bash
+curl -sL https://raw.githubusercontent.com/PabloVitasso/risk_advisory/master/install.sh | bash
 ```
 
 ### From Local Clone
 
 ```bash
-git clone https://github.com/HakAl/risk_advisory.git
+git clone https://github.com/PabloVitasso/risk_advisory.git
 cd risk_advisory
 ./install.sh
 ```
