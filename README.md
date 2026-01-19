@@ -1,240 +1,215 @@
-# Skills Team
+# Risk Advisory Council
 
-**The Plan → Build Workflow for Claude Code**
+**Adversarial risk assessment for life situations**
 
-AI teammates that argue with each other so your code ships better.
+AI advisors that challenge each other so you make safer decisions.
 
-![Demo](docs/demo.gif)
+## The Framework
 
-## The Pattern
+**Frame → Attack → Constrain → Decide → Record**
 
-**Plan → Critique → Build → Validate**
+Instead of "is this safe?", run a structured assessment:
 
-Instead of "just code it," force a structured conversation:
+1. **Coordinator** frames the question clearly
+2. **Adversary** attacks assumptions and finds failure modes
+3. **Domain Expert** grounds in local reality
+4. **Risk Officer** quantifies and recommends
+5. **Recorder** logs everything for future reference
 
-1. **Peter** plans the approach
-2. **Neo** challenges and critiques
-3. **Gary** builds from the approved plan
-4. **Reba** validates before it ships
+Give them a situation, watch them deliberate, make informed decisions.
 
-Give them a task, watch them argue, ship better code.
+## Decision Rules
 
-## The Genesis Concept
+The council operates by explicit rules, not vibes:
 
-This isn't a collection of isolated tools. It's a **team**.
+| Condition | Decision |
+|-----------|----------|
+| Single-point failure exists | **REJECT** - mitigation required |
+| Legal ambiguity unresolved | **DEFER** - consult professional |
+| Mitigation cost < expected loss | **MITIGATE** - take the action |
+| All mitigations exhausted | **ACCEPT RISK** - explicitly document |
 
-**The Bootstrap:**
-1. You install the skills
-2. You run `/team genesis`
-3. Peter (the Lead) convenes the first Retrospective
-4. The team defines their own operating protocols
-5. You step back. They self-organize.
+## Examples
 
-**The Philosophy:**
-- **Personas over process** - Who they are drives what they do
-- **Emergent over prescribed** - They invent what works
-- **Prime Directive** - Maximize User Value; everything else is mutable
-- **Constraints over rules** - Guardrails, not playbooks
+**Tourist safety:**
+```
+/council I'm touring Barcelona and want to park my rental car near La Rambla for 2 hours
+```
 
-The team writes their own `TEAM.md`. They improve their own skills. You're the founder who steps back and lets them figure it out.
+**Neighbor conflict:**
+```
+/council I'm a Polish immigrant in Belgium. My neighbor broke my door and sends threatening SMS. Police have been informed. What safety measures should I take?
+```
+
+**Housing decision:**
+```
+/council Should I rent this apartment? The landlord wants 3 months deposit in cash.
+```
 
 ## Installation
 
-### Quick Install (Recommended)
+### Quick Install
 
 ```bash
-curl -sL https://raw.githubusercontent.com/HakAl/team_skills/master/install.sh | bash
+curl -sL https://raw.githubusercontent.com/HakAl/risk_advisory/master/install.sh | bash
 ```
-
-This installs skills to `~/.claude/skills/` and preserves your existing config.
-
-**To update later, run the same command.**
 
 ### Manual Install
 
 ```bash
-git clone https://github.com/HakAl/team_skills.git
-cp -r team_skills/{team,planning-peter,nifty-neo,research-reba,meticulous-matt,greenfield-gary,grizzly-gabe,zen-runner,codebase-cleanup,TEAM.md} ~/.claude/skills/
+git clone https://github.com/HakAl/risk_advisory.git
+cp -r risk_advisory/{council,coordinator,adversary,domain-expert,risk-officer,recorder,COUNCIL.md} ~/.claude/skills/
 ```
 
-### Run Genesis
+### Initialize
 
 In Claude Code:
 
 ```
-/team genesis
+/council genesis
 ```
 
-That's it. Watch them build their own `TEAM.md` and Dashboard.
+## The Council
 
-Peter will convene the team, Neo will challenge his proposals, Reba will validate, and they'll define their initial protocols.
+| Function | Mandate | Output |
+|----------|---------|--------|
+| **Coordinator** | Frame question, enforce process | Clear decision scope |
+| **Adversary** | Invalidate the plan | Failure modes, attack vectors |
+| **Domain Expert** | Reality check | Contextual constraints, local factors |
+| **Risk Officer** | Quantify downside | Risk class + mitigations |
+| **Recorder** | Immutable log | Evidence + rationale |
 
-### 3. Configure Environment (Optional)
+## Risk Classification
 
-The team works best with certain MCP servers. See [ENVIRONMENT.md](ENVIRONMENT.md) for recommendations.
-
-**Quick win** - add GitHub MCP for autonomous PR review:
-```bash
-claude mcp add --transport http github https://api.githubcopilot.com/mcp/
-```
-
-### 4. Step Back
-
-The team is operational. Check in when you want with:
-
-```
-/team              # View current status
-/team iterate      # Run an improvement cycle
-```
-
-## The Team
-
-| Skill | Role | What They Do |
-|-------|------|--------------|
-| **Peter** | Founder/Lead | Invents process, drives consensus, runs retrospectives |
-| **Neo** | Architect/Critic | Challenges designs, finds bottlenecks, grounds hallucinations |
-| **Reba** | Guardian/QA | Validates everything, guards safety rails, nothing merges without her |
-| **Matt** | Auditor | Finds all issues, reports honestly, tracks everything |
-| **Gary** | Builder | Implements from plans, follows the spec |
-| **Gabe** | Fixer | Resolves issues, works through reports |
-| **Zen** | Executor | Autonomous work, no human-in-loop required |
-
-Plus **Codebase Cleanup** - a fast utility scanner (no persona).
-
-## Workflows
-
-### Think → Plan → Build → Validate
-
-```
-You: "Build a user authentication system"
-    ↓
-Neo (brainstorm) → Peter (plan) → Gary (implement) → Reba (validate)
-```
-
-### Audit → Fix
-
-```
-/codebase-cleanup  →  Matt (track)  →  Gabe (fix)  →  Reba (validate)
-```
-
-### Team Self-Improvement
-
-```
-/team iterate
-    ↓
-Peter (convene) → Matt (audit) → Neo (challenge) → Team (improve) → Reba (validate)
-```
+| Class | When | Response |
+|-------|------|----------|
+| **CRITICAL** | High probability + High impact | Do not proceed without mitigation |
+| **HIGH** | High prob + Moderate OR Moderate prob + High impact | Mitigate before proceeding |
+| **MODERATE** | Moderate probability + Moderate impact | Mitigate if cost-effective |
+| **LOW** | Low probability + Low-Moderate impact | Accept with awareness |
+| **NEGLIGIBLE** | Very low probability + Low impact | Accept |
 
 ## Quick Reference
 
 | Command | What Happens |
 |---------|--------------|
-| `/team genesis` | Bootstrap - Peter defines initial protocols |
-| `/team iterate` | Improvement cycle - team evolves their processes |
-| `/team` | Status - view current TEAM.md state |
+| `/council <situation>` | Full assessment |
+| `/council genesis` | Initialize council |
+| `/council` | Show status |
 
 ### Direct Invocations
 
 ```
-"Neo, how would you build this?"     → Architecture brainstorm
-"Peter, plan this feature"           → Formal planning workflow
-"Gary, build this"                   → Execute from approved plan
-"Matt, review the codebase"          → Full audit
-"Gabe, fix these issues"             → Work through findings
-"Reba, validate this"                → QA sign-off
-"Zen, run this task"                 → Autonomous execution
+"Coordinator, frame this situation"  → Structure the question
+"Adversary, attack this plan"        → Find failure modes
+"Domain Expert, ground this"         → Local reality check
+"Risk Officer, quantify this"        → Risk classification
+"Recorder, log this assessment"      → Create record
 ```
+
+## Process Flow
+
+```
+┌─────────────┐
+│ COORDINATOR │ → Frame: What's the specific decision?
+└──────┬──────┘
+       ↓
+┌─────────────┐
+│  ADVERSARY  │ → Attack: How could each assumption be wrong?
+└──────┬──────┘
+       ↓
+┌─────────────┐
+│   DOMAIN    │ → Constrain: What local factors apply?
+│   EXPERT    │
+└──────┬──────┘
+       ↓
+┌─────────────┐
+│    RISK     │ → Decide: What's the probability × impact?
+│   OFFICER   │
+└──────┬──────┘
+       ↓
+┌─────────────┐
+│  RECORDER   │ → Record: What evidence is needed?
+└─────────────┘
+```
+
+**No function may be skipped.** No deliberation without attack. No decision without constraints.
 
 ## Safety Rails
 
-The team operates within guardrails defined in `TEAM.md`:
+1. **No Skipping** - Every function must contribute
+2. **Consensus Before Action** - All voices heard before recommendation
+3. **User Decides** - Council advises, user acts
+4. **Record Everything** - Assessments are immutable records
+5. **Escalate Danger** - Immediate threats → emergency services, not assessment
 
-1. **No Lobotomies** - IMMUTABLE sections of skills cannot be edited
-2. **Reba's Law** - All self-modifications require Reba's validation
-3. **Stay in Your Lane** - Only `_skills/` and `.team/` are modifiable
-4. **No Direct Push to Main** - Team works on branches; user merges
+## When Council Stops and Asks
+
+- Immediate physical danger (call emergency services)
+- Legal complexity requiring professional advice
+- Insufficient information to assess
+- User asking council to validate clearly dangerous action
 
 ## Structure
 
 ```
-skills-team/
-├── TEAM.md                 # Team protocols (self-defined)
-├── ENVIRONMENT.md          # Recommended MCP servers
-├── .team/                  # Collaboration space
-│   ├── dashboard.ps1       # Status visualization
-│   ├── changelog.md        # Team evolution log
-│   ├── plans/              # Active plans
-│   └── retro/              # Retrospective outputs
-├── examples/               # Reference examples
-│   ├── TEAM_FULL.md        # Complete protocol (post-genesis)
-│   └── GENESIS_LOG.md      # How genesis works
-├── team/                   # Orchestration skill
-├── planning-peter/         # Lead
-├── nifty-neo/              # Architect/Critic
-├── research-reba/          # Guardian/QA
-├── meticulous-matt/        # Auditor
-├── greenfield-gary/        # Builder
-├── grizzly-gabe/           # Fixer
-├── zen-runner/             # Executor
-└── codebase-cleanup/       # Utility scanner
+risk_advisory/
+├── COUNCIL.md              # Council protocols and decision rules
+├── .council/               # Working space
+│   ├── assessments/        # Assessment records
+│   ├── handoff.md          # Session state
+│   └── evidence/           # User-added evidence
+├── council/                # Orchestration skill
+├── coordinator/            # Frame & process
+├── adversary/              # Attack & invalidate
+├── domain-expert/          # Reality check
+├── risk-officer/           # Quantify & decide
+└── recorder/               # Log & evidence
 ```
 
-## Why This Works
+## Philosophy
 
-Traditional tool collections are isolated. Each skill operates alone.
+This isn't roleplay. It's a **decision system**.
 
-This team **knows each other**:
-- Neo knows to challenge Peter's proposals
-- Reba knows to validate Gary's builds
-- Matt knows to feed issues to Gabe
-- Peter knows to convene everyone for retrospectives
+- **Functions, not personas** - Clear outputs, not character acting
+- **Process, not deliberation** - Structure beats discussion
+- **Quantify, not opine** - Numbers beat feelings
+- **Record, not forget** - Future-you needs this evidence
 
-They have **shared context** in `TEAM.md` and `.team/`.
+## Example Output
 
-They **improve themselves** - updating their own MUTABLE sections based on what they learn.
+```markdown
+## Risk Assessment: Barcelona Parking
 
-## The State Machine
+**Risk Class:** HIGH
+**Recommendation:** MITIGATE
 
-The team operates as a **file-driven state machine**:
+### Summary
+Street parking near La Rambla with rental car presents HIGH risk due to
+tourist-targeting theft. Mitigation cost (€15 guarded parking) is far
+below expected loss (€200-2000 + disruption).
 
+### Key Failure Modes
+1. Smash-and-grab theft - HIGH probability, MODERATE impact
+2. Insurance claim denial - MODERATE probability, HIGH impact
+
+### Required Mitigations
+1. Use guarded parking (€15/2hr, 5min walk)
+2. Remove all valuables from vehicle
+
+### Evidence to Capture Now
+- [ ] Photo of car condition before parking
+- [ ] Screenshot of parking location
+- [ ] Rental agreement with insurance details
+
+### Residual Risk
+LOW - Guarded lots have rare but non-zero incidents. Acceptable.
 ```
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│   Files     │ ──▶ │   Agents    │ ──▶ │   Files     │
-│  (context)  │     │  (process)  │     │  (output)   │
-└─────────────┘     └─────────────┘     └─────────────┘
-       │                   │                   │
-       └───────────────────┴───────────────────┘
-                     (loop)
-```
-
-**Files provide context:**
-- `TEAM.md` tells agents how to collaborate
-- `.team/plans/` contains active work
-- `.team/retro/` records learnings
-
-**Agents process and output:**
-- Peter reads TEAM.md → Proposes changes → Writes to TEAM.md
-- Gary reads plan → Implements code → Updates plan status
-- Reba reads changes → Validates → Approves or rejects
-
-**The loop continues:**
-- Each invocation reads current state from files
-- Each agent writes updated state back to files
-- Next invocation picks up where the last left off
-
-This is how stateless agents maintain continuity: **they persist context to files**.
-
-See `examples/GENESIS_LOG.md` for a detailed walkthrough of how Genesis works.
 
 ## License
 
 MIT License - see [LICENSE](LICENSE)
 
-## Contributing
+## Origins
 
-This is an experiment in self-organizing AI teams. Contributions welcome.
-
-The team can review your PR. Just ask:
-```
-"Peter, review this PR for team integration"
-```
+Forked from [team_skills](https://github.com/HakAl/team_skills) - a multi-persona framework for software development. This project applies the same adversarial deliberation pattern to life risk assessment.
