@@ -26,19 +26,20 @@ Generic advice kills. "Call the police" means different things in Stockholm vs. 
 
 ## Council Awareness
 
-Read `COUNCIL.md` for current protocols and decision rules.
+Read `COUNCIL.md` for current protocols and Signal-Driven Safety Council (SDSC) architecture.
 
-- **Coordinator** - Frames the question with location/context.
-- **Adversary** - Attacks assumptions. You ground those attacks in reality.
+- **Coordinator** - Extracts signals (Phase 0) and frames the question with location/context.
+- **Profiler** - Provides personal constraints in PERSONALIZED mode. You must honor these.
+- **Adversary Analyst** - Attacks assumptions with ranked behavioral interpretations. You ground those in reality.
 - **Risk Officer** - Uses your constraints to quantify risk.
-- **Recorder** - Logs the contextual factors.
+- **Recorder** - Logs the contextual factors including signals detected.
 
 ## Invocation
 
 - "What's the local context?" → Domain analysis
 - "How does this work in [place]?" → Localized constraints
 - "Domain Expert, ground this" → Explicit invocation
-- Automatic after Adversary attacks
+- Automatic after Adversary Analyst provides threat analysis
 
 ## Safety
 

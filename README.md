@@ -1,49 +1,88 @@
 # Risk Advisory Council
 
-**Adversarial risk assessment for life situations**
+**Signal-Driven Safety Council (SDSC) for adversarial risk assessment**
 
-AI advisors that challenge each other so you make safer decisions.
+AI advisors that automatically detect personalization signals and provide evidence-based threat analysis.
+
+## Architecture: Signal-Driven Safety Council
+
+**Key principle:** Personalization is a **derived property**, not an input flag.
+
+The council **automatically detects** hard signals in your situation and escalates to personalized mode when needed. You don't need to tell it you're worried - it detects the signals.
+
+### Hard Signals (Any One Triggers Personalized Mode)
+
+| Signal Type | Examples |
+|-------------|----------|
+| Age/Vulnerability | "55-year-old", "elderly parent", "my child" |
+| Disability/Condition | "bad knee", "anxiety", "hearing impaired" |
+| Phobia/Aversion | "don't like dogs", "afraid of heights" |
+| Named Individual | "this guy", "my neighbor", "the landlord" |
+| Behavioral Cues | "strange eye movements", "kept staring" |
+| Prior Violation | "he's done this before", "second time" |
+| Emotional Salience | "made me uneasy", "gut feeling" |
+
+**Rule:** ANY hard signal → PERSONALIZED mode. No weighing. No thresholds.
 
 ## The Framework
 
-**Frame → Attack → Constrain → Decide → Record**
+### Generic Mode (no signals)
+```
+Coordinator → Adversary → Domain Expert → Risk Officer → Recorder
+```
 
-Instead of "is this safe?", run a structured assessment:
-
-1. **Coordinator** frames the question clearly
-2. **Adversary** attacks assumptions and finds failure modes
-3. **Domain Expert** grounds in local reality
-4. **Risk Officer** quantifies and recommends
-5. **Recorder** logs everything for future reference
-
-Give them a situation, watch them deliberate, make informed decisions.
+### Personalized Mode (signals detected)
+```
+Coordinator → Profiler → Adversary → Domain Expert → Risk Officer → Recorder
+        ↓           ↓
+   Signals      Constraints
+   detected     derived
+```
 
 ## Decision Rules
-
-The council operates by explicit rules, not vibes:
 
 | Condition | Decision |
 |-----------|----------|
 | Single-point failure exists | **REJECT** - mitigation required |
 | Legal ambiguity unresolved | **DEFER** - consult professional |
 | Mitigation cost < expected loss | **MITIGATE** - take the action |
+| Subjective fear + objective cue | **TREAT AS ACTIONABLE** - never dismiss |
 | All mitigations exhausted | **ACCEPT RISK** - explicitly document |
+
+## Behavioral Interpretation
+
+When behavioral cues are detected, the Adversary Analyst provides **evidence-based ranked interpretations** with source citations:
+
+| Interpretation | Likelihood | Source |
+|----------------|------------|--------|
+| Pre-attack info gathering | **LIKELY** | de Becker "Gift of Fear": boundary-testing pattern |
+| Social impairment | **POSSIBLE** | ~1-2% population ASD prevalence |
+| Intoxication | **POSSIBLE** | Affects social calibration |
+| Benign curiosity | **UNLIKELY** | Persistence exceeds social norms |
+
+**User decides final threat weight**, but LIKELY interpretations drive recommended posture.
 
 ## Examples
 
-**Tourist safety:**
+**Tourist safety (Generic mode):**
 ```
-/council I'm touring Barcelona and want to park my rental car near La Rambla for 2 hours
-```
-
-**Neighbor conflict:**
-```
-/council I'm a Polish immigrant in Belgium. My neighbor broke my door and sends threatening SMS. Police have been informed. What safety measures should I take?
+/council I'm touring Barcelona and want to park my rental car near La Rambla
 ```
 
-**Housing decision:**
+**Personal vulnerability (Personalized mode auto-detected):**
 ```
-/council Should I rent this apartment? The landlord wants 3 months deposit in cash.
+/council I'm 55 and don't like dogs. Should I walk through the park?
+→ Signals detected: Age, Phobia
+→ Mode: PERSONALIZED
+→ Profiler constraints applied
+```
+
+**Behavioral threat (Personalized mode auto-detected):**
+```
+/council A man at the bus stop had strange eye movements and kept asking where I live
+→ Signals detected: Named individual, Behavioral cues, Boundary probing
+→ Mode: PERSONALIZED
+→ Evidence-based behavioral interpretations with sources
 ```
 
 ## Installation
@@ -54,16 +93,15 @@ The council operates by explicit rules, not vibes:
 curl -sL https://raw.githubusercontent.com/HakAl/risk_advisory/master/install.sh | bash
 ```
 
-### Manual Install
+### From Local Clone
 
 ```bash
 git clone https://github.com/HakAl/risk_advisory.git
-cp -r risk_advisory/{council,coordinator,adversary,domain-expert,risk-officer,recorder,COUNCIL.md} ~/.claude/skills/
+cd risk_advisory
+./install.sh
 ```
 
 ### Initialize
-
-In Claude Code:
 
 ```
 /council genesis
@@ -71,13 +109,15 @@ In Claude Code:
 
 ## The Council
 
-| Function | Mandate | Output |
-|----------|---------|--------|
-| **Coordinator** | Frame question, enforce process | Clear decision scope |
-| **Adversary** | Invalidate the plan | Failure modes, attack vectors |
-| **Domain Expert** | Reality check | Contextual constraints, local factors |
-| **Risk Officer** | Quantify downside | Risk class + mitigations |
-| **Recorder** | Immutable log | Evidence + rationale |
+| Skill | Function | Output |
+|-------|----------|--------|
+| `council` | Orchestration | Convenes council, enforces SDSC process |
+| `coordinator` | Extract & Frame | Signal extraction, risk mode, decision scope |
+| `profiler` | Convert Signals | Personal constraints, invalidated generic advice |
+| `adversary` | Analyze Threats | Ranked behavioral interpretations with sources |
+| `domain-expert` | Reality Check | Local context, actual statistics |
+| `risk-officer` | Quantify & Decide | Risk class, mitigations, recommendation |
+| `recorder` | Immutable Log | Signals, interpretations, evidence |
 
 ## Risk Classification
 
@@ -89,122 +129,110 @@ In Claude Code:
 | **LOW** | Low probability + Low-Moderate impact | Accept with awareness |
 | **NEGLIGIBLE** | Very low probability + Low impact | Accept |
 
-## Quick Reference
-
-| Command | What Happens |
-|---------|--------------|
-| `/council <situation>` | Full assessment |
-| `/council genesis` | Initialize council |
-| `/council` | Show status |
-
-### Direct Invocations
-
-```
-"Coordinator, frame this situation"  → Structure the question
-"Adversary, attack this plan"        → Find failure modes
-"Domain Expert, ground this"         → Local reality check
-"Risk Officer, quantify this"        → Risk classification
-"Recorder, log this assessment"      → Create record
-```
-
 ## Process Flow
 
+### Generic Mode
 ```
 ┌─────────────┐
-│ COORDINATOR │ → Frame: What's the specific decision?
+│ COORDINATOR │ → Extract signals (0 found) + Frame
 └──────┬──────┘
        ↓
 ┌─────────────┐
-│  ADVERSARY  │ → Attack: How could each assumption be wrong?
+│  ADVERSARY  │ → Attack assumptions, find failure modes
+│   ANALYST   │
 └──────┬──────┘
        ↓
 ┌─────────────┐
-│   DOMAIN    │ → Constrain: What local factors apply?
+│   DOMAIN    │ → Ground in local reality
 │   EXPERT    │
 └──────┬──────┘
        ↓
 ┌─────────────┐
-│    RISK     │ → Decide: What's the probability × impact?
+│    RISK     │ → Quantify, classify, recommend
 │   OFFICER   │
 └──────┬──────┘
        ↓
 ┌─────────────┐
-│  RECORDER   │ → Record: What evidence is needed?
+│  RECORDER   │ → Log assessment
 └─────────────┘
 ```
 
-**No function may be skipped.** No deliberation without attack. No decision without constraints.
+### Personalized Mode
+```
+┌─────────────┐
+│ COORDINATOR │ → Extract signals (1+ found) + Frame
+└──────┬──────┘
+       ↓
+┌─────────────┐
+│  PROFILER   │ → Convert signals to constraints
+│             │   Invalidate generic advice
+└──────┬──────┘
+       ↓
+┌─────────────┐
+│  ADVERSARY  │ → Ranked behavioral interpretations
+│   ANALYST   │   with sources (de Becker, FBI BAU, etc.)
+└──────┬──────┘
+       ↓
+┌─────────────┐
+│   DOMAIN    │ → Ground in reality + apply constraints
+│   EXPERT    │
+└──────┬──────┘
+       ↓
+┌─────────────┐
+│    RISK     │ → Quantify with Profiler adjustments
+│   OFFICER   │
+└──────┬──────┘
+       ↓
+┌─────────────┐
+│  RECORDER   │ → Log signals, constraints, interpretations
+└─────────────┘
+```
 
 ## Safety Rails
 
-1. **No Skipping** - Every function must contribute
-2. **Consensus Before Action** - All voices heard before recommendation
-3. **User Decides** - Council advises, user acts
-4. **Record Everything** - Assessments are immutable records
-5. **Escalate Danger** - Immediate threats → emergency services, not assessment
+1. **Signal Extraction Mandatory** - Phase 0 cannot be skipped
+2. **No Dismissal** - Subjective fear + objective cue = actionable
+3. **Interpret, Don't Dismiss** - Provide rankings, never "probably nothing"
+4. **User Decides** - Council provides interpretations, user assigns weight
+5. **Record Everything** - Signals, interpretations, rationale logged
+6. **Escalate Danger** - Immediate threats → emergency services
 
-## When Council Stops and Asks
+## Reference Sources
 
-- Immediate physical danger (call emergency services)
-- Legal complexity requiring professional advice
-- Insufficient information to assess
-- User asking council to validate clearly dangerous action
+The Adversary Analyst cites established sources for behavioral interpretation:
+
+- **de Becker, G. "The Gift of Fear"** - Pre-attack indicators, intuition validation
+- **FBI Behavioral Analysis Unit** - Stalking patterns, escalation indicators
+- **DOJ Statistics** - Base rates, stalking thresholds (3+ incidents)
+- **APA DSM-5** - Prevalence rates for conditions affecting social behavior
 
 ## Structure
 
 ```
 risk_advisory/
-├── COUNCIL.md              # Council protocols and decision rules
+├── COUNCIL.md              # SDSC protocols and decision rules
 ├── .council/               # Working space
 │   ├── assessments/        # Assessment records
 │   ├── handoff.md          # Session state
 │   └── evidence/           # User-added evidence
-├── council/                # Orchestration skill
-├── coordinator/            # Frame & process
-├── adversary/              # Attack & invalidate
-├── domain-expert/          # Reality check
-├── risk-officer/           # Quantify & decide
-└── recorder/               # Log & evidence
+├── council/                # Orchestration
+├── coordinator/            # Extract signals, frame
+├── profiler/               # Convert signals to constraints
+├── adversary/              # Ranked behavioral analysis
+├── domain-expert/          # Local reality
+├── risk-officer/           # Quantify and decide
+└── recorder/               # Immutable log
 ```
 
 ## Philosophy
 
-This isn't roleplay. It's a **decision system**.
+**Signal-driven, not flag-driven.** The system detects what mode it needs.
 
-- **Functions, not personas** - Clear outputs, not character acting
-- **Process, not deliberation** - Structure beats discussion
-- **Quantify, not opine** - Numbers beat feelings
-- **Record, not forget** - Future-you needs this evidence
-
-## Example Output
-
-```markdown
-## Risk Assessment: Barcelona Parking
-
-**Risk Class:** HIGH
-**Recommendation:** MITIGATE
-
-### Summary
-Street parking near La Rambla with rental car presents HIGH risk due to
-tourist-targeting theft. Mitigation cost (€15 guarded parking) is far
-below expected loss (€200-2000 + disruption).
-
-### Key Failure Modes
-1. Smash-and-grab theft - HIGH probability, MODERATE impact
-2. Insurance claim denial - MODERATE probability, HIGH impact
-
-### Required Mitigations
-1. Use guarded parking (€15/2hr, 5min walk)
-2. Remove all valuables from vehicle
-
-### Evidence to Capture Now
-- [ ] Photo of car condition before parking
-- [ ] Screenshot of parking location
-- [ ] Rental agreement with insurance details
-
-### Residual Risk
-LOW - Guarded lots have rare but non-zero incidents. Acceptable.
-```
+- **Automatic differentiation** - Signals drive mode, not user flags
+- **Evidence-based interpretation** - Ranked with citations, not vibes
+- **User decides weight** - Interpretations provided, user assigns threat level
+- **Never dismiss** - LIKELY threatening + POSSIBLE benign = elevated posture
+- **Record everything** - Future-you needs the evidence
 
 ## License
 
@@ -212,4 +240,4 @@ MIT License - see [LICENSE](LICENSE)
 
 ## Origins
 
-Forked from [team_skills](https://github.com/HakAl/team_skills) - a multi-persona framework for software development. This project applies the same adversarial deliberation pattern to life risk assessment.
+Forked from [team_skills](https://github.com/HakAl/team_skills). This project applies adversarial deliberation to life risk assessment with automatic signal-driven personalization.

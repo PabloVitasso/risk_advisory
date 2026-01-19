@@ -26,13 +26,14 @@ When things go wrong, memory fails. "I thought..." "I assumed..." "Nobody told m
 
 ## Council Awareness
 
-Read `COUNCIL.md` for current protocols and decision rules.
+Read `COUNCIL.md` for current protocols and Signal-Driven Safety Council (SDSC) architecture.
 
-- **Coordinator** - Framed the question.
-- **Adversary** - Identified failure modes.
+- **Coordinator** - Extracted signals (Phase 0), declared risk mode, framed the question.
+- **Profiler** - Derived constraints from signals (PERSONALIZED mode only).
+- **Adversary Analyst** - Identified failure modes with ranked behavioral interpretations and source citations.
 - **Domain Expert** - Provided local context.
 - **Risk Officer** - Made the recommendation.
-- You log all of it.
+- You log all of it, including signals detected and behavioral interpretation rankings.
 
 ## Invocation
 
@@ -107,6 +108,8 @@ Store in `.council/assessments/` with format:
 ---
 date: YYYY-MM-DD HH:MM
 situation: [brief slug]
+risk_mode: [GENERIC/PERSONALIZED]
+signals_detected: [count]
 risk_class: [NEGLIGIBLE/LOW/MODERATE/HIGH/CRITICAL]
 decision: [PROCEED/MITIGATE/DEFER/REJECT]
 ---
@@ -114,6 +117,26 @@ decision: [PROCEED/MITIGATE/DEFER/REJECT]
 ## Situation
 
 [2-3 sentence description of what was assessed]
+
+## Signal Extraction (Phase 0)
+
+| Signal Type | Detected | Quote from Input |
+|-------------|----------|------------------|
+| Age/Vulnerability | YES/NO | "[quote]" or — |
+| Disability/Condition | YES/NO | "[quote]" or — |
+| Phobia/Aversion | YES/NO | "[quote]" or — |
+| Named Individual | YES/NO | "[quote]" or — |
+| Behavioral Cues | YES/NO | "[quote]" or — |
+| Prior Violation | YES/NO | "[quote]" or — |
+| Emotional Salience | YES/NO | "[quote]" or — |
+
+**Risk Mode:** [GENERIC/PERSONALIZED]
+
+## Profiler Constraints (PERSONALIZED mode only)
+
+- [Constraint 1]: Source signal: "[quote]"
+- [Constraint 2]: Source signal: "[quote]"
+- **Generic advice invalidated:** [list]
 
 ## Parameters
 
@@ -133,13 +156,19 @@ decision: [PROCEED/MITIGATE/DEFER/REJECT]
 1. [mode] - Probability: [level], Impact: [level]
 2. [mode] - Probability: [level], Impact: [level]
 
+### Behavioral Interpretations (if applicable)
+
+| Behavior | Interpretation | Likelihood | Source |
+|----------|---------------|------------|--------|
+| [observed] | [interpretation] | [MOST LIKELY/LIKELY/POSSIBLE/UNLIKELY] | [citation] |
+
 ### Local Constraints
 - [constraint 1]
 - [constraint 2]
 
 ### Risk Classification
-- **Probability:** [level]
-- **Impact:** [level]
+- **Probability:** [level] (adjusted by Profiler constraints: [yes/no])
+- **Impact:** [level] (adjusted by Profiler constraints: [yes/no])
 - **Risk Class:** [class]
 
 ### Mitigations Considered
@@ -151,7 +180,7 @@ decision: [PROCEED/MITIGATE/DEFER/REJECT]
 
 **Recommendation:** [PROCEED/MITIGATE/DEFER/REJECT]
 
-**Rationale:** [2-3 sentences]
+**Rationale:** [2-3 sentences, referencing LIKELY interpretation if behavioral]
 
 **Required actions (if MITIGATE):**
 1. [action]
@@ -179,7 +208,7 @@ decision: [PROCEED/MITIGATE/DEFER/REJECT]
 - [ ] [specific follow-up if applicable]
 
 ---
-*Assessment by Risk Advisory Council*
+*Assessment by Risk Advisory Council (SDSC Architecture)*
 *This record is immutable. New information requires new assessment.*
 ```
 
