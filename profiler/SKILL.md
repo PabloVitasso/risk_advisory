@@ -47,7 +47,8 @@ Read `COUNCIL.md` for current protocols and the Signal-Driven Safety Council arc
 
 ## Invocation
 
-- Automatic when PERSONALIZED mode is declared
+- Automatic when PERSONALIZED mode is declared (Phase 2 of /council)
+- "Profiler, [situation]" → **Direct invocation** - convert signals to constraints
 - "Profiler, convert these signals" → Explicit invocation
 - NEVER invoked in GENERIC mode (no signals = no profiling needed)
 

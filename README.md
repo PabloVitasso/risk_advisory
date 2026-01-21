@@ -119,6 +119,22 @@ cd risk_advisory
 | `risk-officer` | Quantify & Decide | Risk class, mitigations, recommendation |
 | `recorder` | Immutable Log | Signals, interpretations, evidence |
 
+## Direct Invocation (Like team_skills)
+
+**Summon any council member directly:**
+
+| Command | Who Responds |
+|---------|--------------|
+| "Coordinator, [situation]" | Extracts signals, frames question |
+| "Profiler, [situation]" | Converts signals to constraints |
+| "Adversary, [situation]" | Attacks assumptions, interprets behaviors |
+| "Domain Expert, [situation]" | Grounds in local reality |
+| "Risk Officer, [situation]" | Quantifies risk, recommends |
+| "Recorder, [situation]" | Creates immutable record |
+| "Council, [situation]" | Full council with auto mode detection |
+
+**Profiler is conditional:** Direct invoke ("Profiler, [situation]") OR auto-included if signals detected during `/council`.
+
 ## Risk Classification
 
 | Class | When | Response |

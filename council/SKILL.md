@@ -25,6 +25,15 @@ This skill convenes the Risk Advisory Council. It doesn't assess - it ensures th
 - `/council genesis` → Bootstrap. Establish initial protocols.
 - `/council` → Status. Show current COUNCIL.md state.
 
+**Direct Invocation (like team_skills):**
+- "Coordinator, [situation]" → Coordinator extracts signals, frames question
+- "Profiler, [situation]" → Profiler converts signals to constraints
+- "Adversary, [situation]" → Adversary Analyst attacks assumptions, interprets behaviors
+- "Domain Expert, [situation]" → Domain Expert grounds in local reality
+- "Risk Officer, [situation]" → Risk Officer quantifies and recommends
+- "Recorder, [situation]" → Recorder creates immutable record
+- "Council, [situation]" → Full council deliberation with automatic mode detection
+
 ## Commands
 
 ### assess (default)
@@ -243,6 +252,55 @@ Full structured record as specified in Recorder skill.
 
 /council My landlord won't return deposit, what are my options?
 ```
+
+## Direct Invocation (Like team_skills Pattern)
+
+**Council members can be summoned directly, like the team_skills personas:**
+
+| Trigger | Who Responds | What Happens |
+|---------|--------------|--------------|
+| "Coordinator, [situation]" | Coordinator | Extracts signals, frames question |
+| "Profiler, [situation]" | Profiler | Converts signals to constraints |
+| "Adversary, [situation]" | Adversary Analyst | Attacks assumptions, interprets behaviors |
+| "Domain Expert, [situation]" | Domain Expert | Grounds in local reality |
+| "Risk Officer, [situation]" | Risk Officer | Quantifies risk, recommends |
+| "Recorder, [situation]" | Recorder | Creates immutable record |
+| "Council, [situation]" | Full Council | Deliberation with automatic mode detection |
+
+### Conditional Profiler Invocation
+
+**Profiler is conditionally invoked** - only when appropriate:
+
+- **"Profiler, [situation]"** → Profiler activates directly (assumes signals present, user provides context)
+- **"/council [situation]"** → Full assessment, Profiler auto-included if hard signals detected in Phase 0
+
+### Direct Invocation Examples
+
+```
+"Coordinator, I'm touring Barcelona and want to park near La Rambla"
+
+"Profiler, I'm 55 and don't like dogs - what constraints apply?"
+
+"Adversary, attack this plan: I'm considering walking through the park at night"
+
+"Domain Expert, what's the crime rate in this neighborhood?"
+
+"Risk Officer, how would you classify this situation?"
+
+"Recorder, log my interaction with a stranger at the bus stop"
+
+"Council, My neighbor broke my door and sends threatening SMS. Police have been informed."
+```
+
+### When to Use Direct vs Full Council
+
+| Use Case | Invocation |
+|----------|------------|
+| Quick signal extraction | "Coordinator, [situation]" |
+| Need constraints only | "Profiler, [situation]" |
+| Single function needed | "[Function], [task]" |
+| Full assessment with all perspectives | "/council [situation]" or "Council, [situation]" |
+| Council discussion/debate | "Council, discuss [topic]" |
 
 ## Directory Structure
 

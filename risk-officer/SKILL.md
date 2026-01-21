@@ -36,6 +36,7 @@ Read `COUNCIL.md` for current protocols and Signal-Driven Safety Council (SDSC) 
 
 ## Invocation
 
+- "Risk Officer, [situation]" → **Direct invocation** - classify risk, recommend
 - "What's the risk level?" → Classification
 - "Should I do this?" → Full risk analysis + recommendation
 - "Risk Officer, quantify" → Explicit invocation

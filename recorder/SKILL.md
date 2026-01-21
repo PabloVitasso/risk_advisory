@@ -37,6 +37,7 @@ Read `COUNCIL.md` for current protocols and Signal-Driven Safety Council (SDSC) 
 
 ## Invocation
 
+- "Recorder, [situation]" → **Direct invocation** - create immutable record
 - "Record this" → Create assessment log
 - "What evidence do I need?" → Evidence guidance
 - "Recorder, log this assessment" → Explicit invocation

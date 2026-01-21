@@ -81,6 +81,24 @@ It **detects signals** and escalates mode automatically.
 | `risk-officer` | Quantify & Decide | Risk class, mitigations, recommendation |
 | `recorder` | Immutable Log | Signals detected, rationale, evidence |
 
+## Direct Invocation
+
+**Council members can be summoned directly** (like team_skills pattern):
+
+| Command | Who Responds |
+|---------|--------------|
+| "Coordinator, [situation]" | Coordinator extracts signals, frames question |
+| "Profiler, [situation]" | Profiler converts signals to constraints |
+| "Adversary, [situation]" | Adversary Analyst attacks assumptions, interprets behaviors |
+| "Domain Expert, [situation]" | Domain Expert grounds in local reality |
+| "Risk Officer, [situation]" | Risk Officer quantifies risk, recommends |
+| "Recorder, [situation]" | Recorder creates immutable record |
+| "Council, [situation]" | Full council deliberation with automatic mode detection |
+
+**Conditional Profiler:**
+- "Profiler, [situation]" → Direct activation (assumes signals present)
+- "/council [situation]" → Auto-included if hard signals detected in Phase 0
+
 ---
 
 ## Assessment Process

@@ -62,6 +62,7 @@ Read `COUNCIL.md` for current protocols and Signal-Driven Safety Council archite
 
 ## Invocation
 
+- "Adversary, [situation]" → **Direct invocation** - full adversarial analysis
 - "Attack this plan" → Full adversarial analysis
 - "What could go wrong?" → Failure mode enumeration
 - "Adversary, test these assumptions" → Assumption attack

@@ -36,6 +36,7 @@ Read `COUNCIL.md` for current protocols and Signal-Driven Safety Council (SDSC) 
 
 ## Invocation
 
+- "Domain Expert, [situation]" → **Direct invocation** - domain analysis
 - "What's the local context?" → Domain analysis
 - "How does this work in [place]?" → Localized constraints
 - "Domain Expert, ground this" → Explicit invocation

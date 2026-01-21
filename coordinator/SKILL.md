@@ -56,6 +56,7 @@ Read `COUNCIL.md` for current protocols and Signal-Driven Safety Council archite
 
 - "Assess this situation" → Start with signal extraction
 - "I need to decide about X" → Start with signal extraction
+- "Coordinator, [situation]" → **Direct invocation** - extract signals, frame question
 - "Coordinator, frame this" → Explicit invocation
 - `/council <situation>` → Council orchestration invokes you first
 
